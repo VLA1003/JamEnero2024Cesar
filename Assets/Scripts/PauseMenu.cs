@@ -19,6 +19,9 @@ public class PauseMenu : MonoBehaviour
     private void Awake () {
         instancePausa = this;
         DontDestroyOnLoad(gameObject);
+        menuDePausa.transform.localScale = Vector3.one * .5f;
+        menuPausaCanvasGroup.alpha = 0f;
+        menuDePausa.SetActive(false);
     }
 
     void Start()

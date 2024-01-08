@@ -8,6 +8,10 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        // if (PauseMenu.isPaused = false)
+        //{
+        //
+        //}
         float horizontalMovement = Input.GetAxis("Horizontal");
         float verticalMovement = Input.GetAxis("Vertical");
 

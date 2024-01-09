@@ -78103,9 +78103,21 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 8357982398058784232, guid: 77dbe306d44f89b4db49de2e55523a48, type: 3}
+      propertyPath: poopClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 7cc40f226a0db42479eab787ff1c9009, type: 3}
+    - target: {fileID: 8357982398058784232, guid: 77dbe306d44f89b4db49de2e55523a48, type: 3}
       propertyPath: poopCover
       value: 
       objectReference: {fileID: 1789062178}
+    - target: {fileID: 8357982398058784232, guid: 77dbe306d44f89b4db49de2e55523a48, type: 3}
+      propertyPath: sprintClip
+      value: 
+      objectReference: {fileID: 8300000, guid: fa75efcee775bc6449f09bde92bb79a5, type: 3}
+    - target: {fileID: 8357982398058784232, guid: 77dbe306d44f89b4db49de2e55523a48, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 1959129900}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

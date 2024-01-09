@@ -18,18 +18,21 @@ public class PlayerMovement : MonoBehaviour
 
     public Animator animator;
 
-    public AudioSource poopSound;
-    public AudioSource pickupSound;
-    public AudioSource sprintSound;
+    public AudioSource audioSource;  
+
+    public AudioClip poopClip;       
+    public AudioClip pickupClip;     
+    public AudioClip sprintClip;     
 
     private void Start()
     {
         poop.SetActive(false);
         animator = GetComponent<Animator>();
 
-        poopSound = gameObject.AddComponent<AudioSource>();
-        sprintSound = gameObject.AddComponent<AudioSource>();
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false;
 
+        audioSource.clip = poopClip;
 
     }
 
@@ -130,7 +133,8 @@ public class PlayerMovement : MonoBehaviour
             }
             running = true;
             speed = 22.5f;
-            sprintSound.Play();
+            audioSource.clip = sprintClip;
+            audioSource.Play();
 
         }
 
@@ -159,7 +163,8 @@ public class PlayerMovement : MonoBehaviour
         poop.SetActive(true);
         poop.transform.SetParent(null);
         canPoop = false;
-        poopSound.Play();
+        audioSource.clip = poopClip;
+        audioSource.Play();
 
     }
 }

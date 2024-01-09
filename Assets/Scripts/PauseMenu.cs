@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
@@ -10,7 +11,7 @@ public class PauseMenu : MonoBehaviour
     bool puedePausar = true;
 
     [SerializeField]
-    GameObject menuDePausa, menuControles, pantallaDeCreditos, creditosTexto;
+    GameObject menuDePausa, menuControles, pantallaDeCreditos, creditosTexto, pantallaDeInicio;
 
     [SerializeField]
     CanvasGroup menuPausaCanvasGroup;
@@ -55,6 +56,11 @@ public class PauseMenu : MonoBehaviour
 
         if (menuDePausa.activeSelf == false) {
             menuDePausa.SetActive(true);
+
+            if (SceneManager.GetActiveScene().name == "InitialScreen")
+            {
+                pantallaDeInicio.GetComponent<GraphicRaycaster>().enabled = false;
+            }
         }
 
         LeanTween.scale(menuDePausa, Vector3.one * nuevaEscalaCanvasPausa, .75f).setEaseOutQuad().setIgnoreTimeScale(true).setOnUpdate((float x) => {
@@ -72,6 +78,10 @@ public class PauseMenu : MonoBehaviour
             if (visibilidadDelCanvasGroup == 0f) {
                 isPaused = false;
                 menuDePausa.SetActive(false);
+                if (SceneManager.GetActiveScene().name == "InitialScreen")
+                {
+                    pantallaDeInicio.GetComponent<GraphicRaycaster>().enabled = true;
+                }
                 Time.timeScale = 1f;
             }
 
@@ -118,10 +128,17 @@ public class PauseMenu : MonoBehaviour
         LeanTween.alphaCanvas(pantallaDeCreditos.GetComponent<CanvasGroup>(), 0f, 0f).setIgnoreTimeScale(true);
         gameObject.GetComponent<GraphicRaycaster>().enabled = false;
         LeanTween.alphaCanvas(pantallaDeCreditos.GetComponent<CanvasGroup>(), 1f, .5f).setEaseOutQuad().setIgnoreTimeScale(true).setOnComplete(() => {
-            LeanTween.moveLocalY(creditosTexto, 1350f, 20f).setIgnoreTimeScale(true).setOnComplete(() => {
+            LeanTween.moveLocalY(creditosTexto, 1350f, 35f).setIgnoreTimeScale(true).setOnComplete(() => {
                 GameManager.instance.IrPantallaDeInicio();
             });
         });
 
+    }
+
+    public void AbrirOpcionesDesdeElInicio ()
+    {
+        Time.timeScale = 0f;
+        isPaused = true;
+        AnimacionPausa(1f, 1f);
     }
  }

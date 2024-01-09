@@ -14,10 +14,14 @@ public class PlayerMovement : MonoBehaviour
     public Image staminaBar, poopCover;
     float stamina = 3f, maxStamina = 3f;
     bool running = false, canRun = true;
+    public bool isMoving;
+
+    public Animator animator;
 
     private void Start()
     {
         poop.SetActive(false);
+        animator = GetComponent<Animator>();
     }
 
     void FixedUpdate()
@@ -25,8 +29,10 @@ public class PlayerMovement : MonoBehaviour
         float horizontalMovement = Input.GetAxis("Horizontal");
         float verticalMovement = Input.GetAxis("Vertical");
 
-        if (horizontalMovement != 0f && verticalMovement != 0f)
+        if (horizontalMovement != 0f || verticalMovement != 0f)
         {
+            isMoving = true;
+
             if (Mathf.Abs(horizontalMovement) > Mathf.Abs(verticalMovement))
             {
                 verticalMovement = 0f;
@@ -36,8 +42,14 @@ public class PlayerMovement : MonoBehaviour
                 horizontalMovement = 0f;
             }
         }
+        else
+        {
+            isMoving = false;
+        }
         Vector3 movement = new Vector3(horizontalMovement, verticalMovement, 0f) * speed * Time.deltaTime;
         gameObject.GetComponent<Rigidbody2D>().MovePosition(transform.position + movement * speed * Time.deltaTime);
+
+        UpdateAnimatorParameters(horizontalMovement, verticalMovement);
     }
 
     private void Update()
@@ -121,6 +133,13 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
+    }
+
+    private void UpdateAnimatorParameters(float horizontal, float vertical)
+    {
+        animator.SetFloat("Horizontal", horizontal);
+        animator.SetFloat("Vertical", vertical);
+        animator.SetBool("IsMoving", isMoving);
     }
 
     void DropPoop()

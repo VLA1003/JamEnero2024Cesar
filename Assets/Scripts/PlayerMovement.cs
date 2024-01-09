@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public float speed = 15f;
     public GameObject poop;
     public float poopDecayTime = 0;
+    public bool canPoop = true;
 
     private void Start()
     {
@@ -32,7 +33,6 @@ public class PlayerMovement : MonoBehaviour
             }
         }
         Vector3 movement = new Vector3(horizontalMovement, verticalMovement, 0f) * speed * Time.deltaTime;
-        //transform.Translate(movement);
         gameObject.GetComponent<Rigidbody2D>().MovePosition(transform.position + movement * speed * Time.deltaTime);
     }
 
@@ -42,10 +42,14 @@ public class PlayerMovement : MonoBehaviour
         //{
         if (Input.GetKeyDown(KeyCode.Space) && poop.activeSelf == false)
             {
-                Debug.Log("Ha defecado");
+                //Debug.Log("Ha defecado");
                 DropPoop();
             }
+
+        if (poop.activeSelf == true)
+        {
             poopDecayTime += Time.deltaTime;
+        }
 
             if (poopDecayTime > 3f)
             {
@@ -53,6 +57,7 @@ public class PlayerMovement : MonoBehaviour
                 poop.transform.SetParent(gameObject.transform);
                 poop.transform.localPosition = Vector2.zero;
                 poop.SetActive(false);
+                canPoop = true;
             }
         //}
 
@@ -72,5 +77,6 @@ public class PlayerMovement : MonoBehaviour
         poopDecayTime = 0f;
         poop.SetActive(true);
         poop.transform.SetParent(null);
+        canPoop = false;
     }
 }

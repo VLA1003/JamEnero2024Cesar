@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject poop;
     public float poopDecayTime = 0;
     public bool canPoop = true;
-    public Image staminaBar;
+    public Image staminaBar, poopCover;
     float stamina = 3f, maxStamina = 3f;
     bool running = false, canRun = true;
 
@@ -52,7 +52,13 @@ public class PlayerMovement : MonoBehaviour
 
         if (poop.activeSelf == true)
         {
+            if (poopCover.gameObject.activeSelf == false)
+            {
+                poopCover.gameObject.SetActive(true);
+                poopCover.fillAmount = 1f;
+            }
             poopDecayTime += Time.deltaTime;
+            poopCover.fillAmount = 1 - poopDecayTime / 3f;
         }
 
             if (poopDecayTime > 3f)
@@ -61,6 +67,7 @@ public class PlayerMovement : MonoBehaviour
                 poop.transform.SetParent(gameObject.transform);
                 poop.transform.localPosition = Vector2.zero;
                 poop.SetActive(false);
+                poopCover.gameObject.SetActive(false);
                 canPoop = true;
             }
         //}

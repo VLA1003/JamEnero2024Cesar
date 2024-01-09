@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
     public Image staminaBar, poopCover;
     float stamina = 3f, maxStamina = 3f;
     bool running = false, canRun = true;
-    public bool isMoving = false;
+    public bool isMoving;
 
     public Animator animator;
 
@@ -32,6 +32,15 @@ public class PlayerMovement : MonoBehaviour
         if (horizontalMovement != 0f || verticalMovement != 0f)
         {
             isMoving = true;
+
+            if (Mathf.Abs(horizontalMovement) > Mathf.Abs(verticalMovement))
+            {
+                verticalMovement = 0f;
+            }
+            else
+            {
+                horizontalMovement = 0f;
+            }
         }
         else
         {

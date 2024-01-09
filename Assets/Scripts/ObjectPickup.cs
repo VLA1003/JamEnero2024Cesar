@@ -9,9 +9,18 @@ public class ObjectPickup : MonoBehaviour
     public GameObject burrow;
     public bool isDelivered = false;
 
+    public AudioSource pickupSound;  
+    public AudioClip pickupClip;     
+
+
     private void Start()
     {
         DontDestroyOnLoad(gameObject);
+        pickupSound = gameObject.AddComponent<AudioSource>();
+        pickupSound.playOnAwake = false;  
+
+        
+        pickupSound.clip = pickupClip;
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -22,6 +31,9 @@ public class ObjectPickup : MonoBehaviour
             currentObject = other.gameObject;
             currentObject.transform.SetParent(transform);
             currentObject.GetComponent<Collider2D>().enabled = false;
+
+            pickupSound.Play();
+
         }
         else if (other.CompareTag("Burrow") && currentObject != null)
         {

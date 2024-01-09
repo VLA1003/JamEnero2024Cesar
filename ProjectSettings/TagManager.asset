@@ -43,3 +43,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Collectibles
+    uniqueID: 3370966313
+    locked: 0
+  - name: Background
+    uniqueID: 50415821
+    locked: 0
+  - name: Objects
+    uniqueID: 2317523147
+    locked: 0
+  - name: Characters
+    uniqueID: 3564392067
+    locked: 0

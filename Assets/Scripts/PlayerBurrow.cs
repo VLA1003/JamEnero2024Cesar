@@ -11,7 +11,7 @@ public class PlayerBurrow : MonoBehaviour
         if (entry.CompareTag("Burrow"))
         {
             onBurrow = true;
-            Debug.Log("Ha entrado en la madriguera.");
+            //Debug.Log("Ha entrado en la madriguera.");
         }
     }
 
@@ -20,8 +20,7 @@ public class PlayerBurrow : MonoBehaviour
         if (exit.CompareTag("Burrow"))
         { 
             onBurrow = false;
-            Debug.Log("Ha salido de la madriguera.");
+            //Debug.Log("Ha salido de la madriguera.");
         }
     }
-
 }

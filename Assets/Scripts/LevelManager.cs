@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.Linq;
 
 public class LevelManager : MonoBehaviour
 {
     public float tiempo;
-    int tiempoSegundos, tiempoMinutos;
+    int tiempoSegundos;
     public int frutasAGenerar;
     public int frutasRestantes;
 
@@ -35,16 +36,14 @@ public class LevelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (tiempoSegundos > 0f) {
+        if (tiempo > 0f) {
             tiempo -= Time.deltaTime;
         } else {
             FinalizarPantalla(tiempo);
         }
 
         tiempoSegundos = Mathf.RoundToInt(tiempo);
-        tiempoMinutos = tiempoSegundos / 60;
-        tiempoSegundos = tiempoMinutos % 60;
-        textoTiempo.text = tiempoMinutos + ":" + tiempoSegundos;
+        textoTiempo.text = "Tiempo: " + tiempoSegundos.ToString();
 
         if (frutasRestantes == 0) {
             FinalizarPantalla(tiempo);
@@ -66,7 +65,8 @@ public class LevelManager : MonoBehaviour
                 }
             }
 
-            puntosUsados [puntosUsados.Length] = puntoAUsar;
+            //puntosUsados [puntosUsados.Length - 1] = puntoAUsar;
+            puntosUsados.Append(puntoAUsar);
 
             foreach (int frutaActivar in frutaCreada) {
 
@@ -75,7 +75,8 @@ public class LevelManager : MonoBehaviour
                 }
             }
 
-            frutaCreada [frutaCreada.Length] = frutaACrear;
+            //frutaCreada [frutaCreada.Length] = frutaACrear;
+            frutaCreada.Append(frutaACrear);
 
             frutasPool [frutaACrear].SetActive(true);
             frutasPool [frutaACrear].transform.position = puntosDeCreacion [puntoAUsar].transform.position;

@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public int nivelActual = 0, puntos = 0;
-    public Scene [] niveles;
+    public string [] niveles;
     public GameObject menuDePausa;
     private void Awake () {
         instance = this;
@@ -25,7 +25,12 @@ public class GameManager : MonoBehaviour
     }
 
     public void SiguienteNivel (int nivelACargar) {
-        SceneManager.LoadScene(niveles [nivelACargar].name);
+        if (PauseMenu.instancePausa.isPaused == true || Time.timeScale != 1f)
+        {
+            PauseMenu.instancePausa.isPaused = false;
+            Time.timeScale = 1f;
+        }
+        SceneManager.LoadScene(niveles [nivelACargar]);
     }
 
     public void TerminarNivel (int puntosDelNivel) {
@@ -43,8 +48,18 @@ public class GameManager : MonoBehaviour
     }
 
     public void IrPantallaDeInicio () {
+        if (PauseMenu.instancePausa.isPaused == true || Time.timeScale != 1f)
+        {
+            PauseMenu.instancePausa.isPaused = false;
+            Time.timeScale = 1f;
+        }
         SceneManager.LoadScene(0);
         Destroy(menuDePausa);
         Destroy(gameObject);
+    }
+
+    public void SalirDelJuego ()
+    {
+        Application.Quit();
     }
 }

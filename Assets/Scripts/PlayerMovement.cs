@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro.Examples;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class PlayerMovement : MonoBehaviour
     public GameObject poop;
     public float poopDecayTime = 0;
     public bool canPoop = true;
+    public Image staminaBar, poopCover;
+    float stamina = 3f, maxStamina = 3f;
+    bool running = false, canRun = true;
 
     private void Start()
     {
@@ -48,7 +52,13 @@ public class PlayerMovement : MonoBehaviour
 
         if (poop.activeSelf == true)
         {
+            if (poopCover.gameObject.activeSelf == false)
+            {
+                poopCover.gameObject.SetActive(true);
+                poopCover.fillAmount = 1f;
+            }
             poopDecayTime += Time.deltaTime;
+            poopCover.fillAmount = 1 - poopDecayTime / 3f;
         }
 
             if (poopDecayTime > 3f)
@@ -57,17 +67,58 @@ public class PlayerMovement : MonoBehaviour
                 poop.transform.SetParent(gameObject.transform);
                 poop.transform.localPosition = Vector2.zero;
                 poop.SetActive(false);
+                poopCover.gameObject.SetActive(false);
                 canPoop = true;
             }
         //}
-
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (running == true)
         {
+            if (stamina > 0f)
+            {
+                stamina -= Time.deltaTime;
+                staminaBar.fillAmount = stamina / maxStamina;
+            } else
+            {
+                running = false;
+                canRun = false;
+                staminaBar.color = new Color (1f, 0.7466f, .6941f, 1f);
+                speed = 10f;
+            }
+        } else
+        {
+            if (stamina < maxStamina)
+            {
+                stamina += Time.deltaTime / 2.5f;
+                staminaBar.fillAmount = stamina / maxStamina;
+
+            } else
+            {
+                stamina = maxStamina;
+                running = false;
+                canRun = true;
+                staminaBar.color = new Color (1, 0.9870f, 0.6933f, 1f);
+                staminaBar.gameObject.SetActive(false);
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.LeftShift) && canRun == true)
+        {
+            if (staminaBar.gameObject.activeSelf == false)
+            {
+                staminaBar.gameObject.SetActive(true);
+            }
+            running = true;
             speed = 22.5f;
         }
+
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
-            speed = 15f;
+            running = false;
+
+            if (canRun == true)
+            {
+                speed = 15f;
+            }
         }
 
     }

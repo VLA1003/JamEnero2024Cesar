@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class EnemyMovement : MonoBehaviour
 {
@@ -12,16 +11,13 @@ public class EnemyMovement : MonoBehaviour
     public float chaseDuration = 5f;
 
     private Transform player;
-    private NavMeshAgent navMeshAgent;
     private int currentPatrolIndex = 0;
     private float timer;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        navMeshAgent = GetComponent<NavMeshAgent>();
         timer = chaseDuration;
-        SetPatrolDestination();
     }
 
     void Update()
@@ -51,28 +47,21 @@ public class EnemyMovement : MonoBehaviour
     void ChasePlayer()
     {
         timer -= Time.deltaTime;
-        navMeshAgent.speed = chaseSpeed;
-        navMeshAgent.SetDestination(player.position);
-
+        transform.position = Vector2.MoveTowards(transform.position, player.position, chaseSpeed * Time.deltaTime);
         if (timer <= 0f)
         {
             timer = chaseDuration;
-            SetPatrolDestination();
+            Patrol();
         }
     }
 
     void Patrol()
     {
-        if (!navMeshAgent.pathPending && navMeshAgent.remainingDistance < 0.1f)
+        transform.position = Vector2.MoveTowards(transform.position, patrolPoints[currentPatrolIndex].position, patrolSpeed * Time.deltaTime);
+        if (Vector2.Distance(transform.position, patrolPoints[currentPatrolIndex].position) < 0.2f)
         {
-            SetPatrolDestination();
+            currentPatrolIndex = (currentPatrolIndex + 1) % patrolPoints.Length;
         }
     }
-
-    void SetPatrolDestination()
-    {
-        navMeshAgent.speed = patrolSpeed;
-        navMeshAgent.SetDestination(patrolPoints[currentPatrolIndex].position);
-        currentPatrolIndex = (currentPatrolIndex + 1) % patrolPoints.Length;
-    }
 }
+

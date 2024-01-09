@@ -6,10 +6,12 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    public int nivelActual = 0;
+    public int nivelActual = 0, puntos = 0;
     public Scene [] niveles;
+    public GameObject menuDePausa;
     private void Awake () {
         instance = this;
+        DontDestroyOnLoad(gameObject);
     }
     void Start()
     {
@@ -38,5 +40,11 @@ public class GameManager : MonoBehaviour
                 SiguienteNivel(nivelActual);
             }
         }
+    }
+
+    public void IrPantallaDeInicio () {
+        SceneManager.LoadScene(0);
+        Destroy(menuDePausa);
+        Destroy(gameObject);
     }
 }

@@ -10,7 +10,7 @@ public class PauseMenu : MonoBehaviour
     bool puedePausar = true;
 
     [SerializeField]
-    GameObject menuDePausa;
+    GameObject menuDePausa, menuControles, pantallaDeCreditos, creditosTexto;
 
     [SerializeField]
     CanvasGroup menuPausaCanvasGroup;
@@ -22,6 +22,8 @@ public class PauseMenu : MonoBehaviour
         menuDePausa.transform.localScale = Vector3.one * .5f;
         menuPausaCanvasGroup.alpha = 0f;
         menuDePausa.SetActive(false);
+        menuControles.SetActive(false);
+        pantallaDeCreditos.SetActive(false);
     }
 
     void Start()
@@ -32,7 +34,7 @@ public class PauseMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && puedePausar == true) {
+        if (Input.GetKeyDown(KeyCode.Escape) && puedePausar == true && menuControles.activeSelf == false) {
 
             if (isPaused == false) {
                 puedePausar = false;
@@ -82,5 +84,44 @@ public class PauseMenu : MonoBehaviour
         puedePausar = false;
         LeanTween.cancel(gameObject);
         AnimacionPausa(0f, .5f);
+    }
+
+    public void AbrirCerrarControles (bool abrir) {
+
+        if (LeanTween.isTweening(gameObject) == false) {
+
+            float visibilidadCanvas = 0f;
+            gameObject.GetComponent<GraphicRaycaster>().enabled = false;
+
+            if (abrir == true) {
+                menuControles.SetActive(true);
+                visibilidadCanvas = 1f;
+                LeanTween.alphaCanvas(menuControles.GetComponent<CanvasGroup>(), 0f, 0f).setIgnoreTimeScale(true);
+            } else {
+                menuDePausa.SetActive(true);
+                visibilidadCanvas = 0f;
+            }
+
+            LeanTween.alphaCanvas(menuControles.GetComponent<CanvasGroup>(), visibilidadCanvas, .5f).setEaseOutQuad().setIgnoreTimeScale(true).setOnComplete(() => {
+                if (abrir == true) {
+                    menuDePausa.SetActive(false);
+                } else {
+                    menuControles.SetActive(false);
+                }
+                gameObject.GetComponent<GraphicRaycaster>().enabled = true;
+            });
+        }
+    }
+
+    public void AbrirCreditos () {
+        pantallaDeCreditos.SetActive(true);
+        LeanTween.alphaCanvas(pantallaDeCreditos.GetComponent<CanvasGroup>(), 0f, 0f).setIgnoreTimeScale(true);
+        gameObject.GetComponent<GraphicRaycaster>().enabled = false;
+        LeanTween.alphaCanvas(pantallaDeCreditos.GetComponent<CanvasGroup>(), 1f, .5f).setEaseOutQuad().setIgnoreTimeScale(true).setOnComplete(() => {
+            LeanTween.moveLocalY(creditosTexto, 1350f, 20f).setIgnoreTimeScale(true).setOnComplete(() => {
+                GameManager.instance.IrPantallaDeInicio();
+            });
+        });
+
     }
  }

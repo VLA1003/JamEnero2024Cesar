@@ -5,14 +5,12 @@ using UnityEngine.UIElements.Experimental;
 
 public class ObjectPickup : MonoBehaviour
 {
-    public static ObjectPickup pickupInstance;
     private GameObject currentObject = null;
     public GameObject burrow;
     public bool isDelivered = false;
 
     private void Start()
     {
-        pickupInstance = this;
         DontDestroyOnLoad(gameObject);
     }
 

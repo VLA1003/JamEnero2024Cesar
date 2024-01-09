@@ -7,6 +7,7 @@ using TMPro;
 
 public class BarrasVolumen : MonoBehaviour
 {
+
     [SerializeField]
     string nombreDeLaVariableDelVolumen;
 
@@ -21,7 +22,10 @@ public class BarrasVolumen : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        float volumen;
+        mezcladorDeVolumen.audioMixer.ClearFloat(nombreDeLaVariableDelVolumen);
+        mezcladorDeVolumen.audioMixer.GetFloat(nombreDeLaVariableDelVolumen, out volumen);
+        gameObject.GetComponent<Slider>().value = volumen;
     }
 
     // Update is called once per frame

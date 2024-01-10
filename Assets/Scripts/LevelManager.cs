@@ -7,6 +7,7 @@ using TMPro.Examples;
 
 public class LevelManager : MonoBehaviour
 {
+    public static LevelManager controladorNiveles;
     public float tiempo;
     int tiempoSegundos;
     int frutasAGenerar;
@@ -22,7 +23,7 @@ public class LevelManager : MonoBehaviour
     GameObject [] frutasPool;
 
     private void Awake () {
-        
+        controladorNiveles = this;
     }
 
     // Start is called before the first frame update

@@ -177,4 +177,10 @@ public class PlayerMovement : MonoBehaviour
         audioSource.Play();
 
     }
+
+    private void OnCollisionEnter2D (Collision2D collision) {
+        if (collision.gameObject.tag == "Enemy") {
+            LevelManager.controladorNiveles.frutasRestantes = 0;
+        }
+    }
 }

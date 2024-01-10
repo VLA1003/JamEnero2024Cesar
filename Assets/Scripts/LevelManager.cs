@@ -32,9 +32,9 @@ public class LevelManager : MonoBehaviour
         textoPuntos = GameObject.Find("Points Text").GetComponent<TextMeshProUGUI>();
         textoComida = GameObject.Find("Comida Restante Texto").GetComponent<TextMeshProUGUI>();
         puntos = GameManager.instance.puntos;
-        CambiarLetreroPuntos();
         frutasAGenerar = puntosDeCreacion.Length;
         frutasRestantes = frutasAGenerar;
+        CambiarLetreroPuntos();
         GenerarFrutas();
 
     }
@@ -60,8 +60,6 @@ public class LevelManager : MonoBehaviour
     }
 
     public void GenerarFrutas () {
-        int [] puntosUsados = {-1};
-        int [] frutaCreada = {-1};
 
         foreach (GameObject spawn in puntosDeCreacion)
         {
@@ -82,3 +80,4 @@ public class LevelManager : MonoBehaviour
         textoComida.text = "Faltan: " + frutasRestantes.ToString();
     }
 }
+  

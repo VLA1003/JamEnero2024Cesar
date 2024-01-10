@@ -45,8 +45,8 @@ public class ObjectPickup : MonoBehaviour
             GameObject oldObject = currentObject;
             currentObject = null;
             levelManager.GetComponent<LevelManager>().puntos = levelManager.GetComponent<LevelManager>().puntos + 100;
-            levelManager.GetComponent<LevelManager>().CambiarLetreroPuntos();
             levelManager.GetComponent<LevelManager>().frutasRestantes = levelManager.GetComponent<LevelManager>().frutasRestantes - 1;
+            levelManager.GetComponent<LevelManager>().CambiarLetreroPuntos();
             LeanTween.scale(oldObject, Vector3.zero, .5f).setOnComplete(() =>
             {
                 Destroy(oldObject);

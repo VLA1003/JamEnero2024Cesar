@@ -9,13 +9,13 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    int puntuacionDeLaPartida = 0;
     float volumenMaestro, volumenFX, volumenMusica;
     public int nivelActual = 0, puntos = 0;
     public string [] niveles;
     public GameObject menuDePausa;
     public AudioMixer mezcladorDeSonido;
     TextMeshProUGUI textoPuntosFinales, textoPuntuacionMaxima;
+    public bool destruirPersonaje = false;
     private void Awake () {
         instance = this;
         DontDestroyOnLoad(gameObject);
@@ -41,6 +41,8 @@ public class GameManager : MonoBehaviour
     }
 
     public void TerminarNivel (int puntosDelNivel) {
+        puntos += puntosDelNivel;
+
         if (puntosDelNivel == 0) {
             nivelActual = 0;
             IrAPantallaFinal();
@@ -57,6 +59,7 @@ public class GameManager : MonoBehaviour
     }
 
     public void IrPantallaDeInicio () {
+        destruirPersonaje = true;
 
         if (menuDePausa != null)
         {
@@ -83,13 +86,14 @@ public class GameManager : MonoBehaviour
 
     public void IrAPantallaFinal ()
     {
+        destruirPersonaje = true;
         int nuevoRecord;
-        PlayerPrefs.SetInt("PuntuacionPartida", puntuacionDeLaPartida);
+        PlayerPrefs.SetInt("PuntuacionPartida", puntos);
         nuevoRecord = PlayerPrefs.GetInt("PuntuacionMaxima", 0);
 
-        if (puntuacionDeLaPartida > nuevoRecord)
+        if (puntos > nuevoRecord)
         {
-            PlayerPrefs.SetInt("PuntuacionMaxima", nuevoRecord);
+            PlayerPrefs.SetInt("PuntuacionMaxima", puntos);
         }
 
         GuardarDatosVolumen();
@@ -103,6 +107,7 @@ public class GameManager : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name != "PantallaFinal")
         {
+            puntos = 0;
             float volumen;
 
             volumen = PlayerPrefs.GetFloat("VolMaestro", 0f);
@@ -119,12 +124,12 @@ public class GameManager : MonoBehaviour
 
         } else
         {
-            puntuacionDeLaPartida = PlayerPrefs.GetInt("PuntuacionPartida", 0);
+            puntos = PlayerPrefs.GetInt("PuntuacionPartida", 0);
             textoPuntosFinales = GameObject.Find("textoPuntos").GetComponent<TextMeshProUGUI>();
-            textoPuntosFinales.text = puntuacionDeLaPartida.ToString() + " pts.";
+            textoPuntosFinales.text = puntos.ToString() + " pts.";
             textoPuntuacionMaxima = GameObject.Find("textoMaximaPuntuacion").GetComponent<TextMeshProUGUI>();
             int puntuacionMaxima;
-            puntuacionMaxima = PlayerPrefs.GetInt("PuntuacionMaxima", puntuacionDeLaPartida);
+            puntuacionMaxima = PlayerPrefs.GetInt("PuntuacionMaxima", puntos);
             textoPuntuacionMaxima.text = "MP: " + puntuacionMaxima.ToString();
         } 
     }

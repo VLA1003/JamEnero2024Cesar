@@ -4178,10 +4178,10 @@ AudioSource:
   m_GameObject: {fileID: 945026261}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -6189588215952539970, guid: 9b30b44eab14e5d42bced3e7ba7476cf, type: 2}
   m_audioClip: {fileID: 8300000, guid: ec1fbdf001ab94140b50aacbcc5632db, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.6
+  m_Volume: 1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -6170,6 +6170,7 @@ MonoBehaviour:
   - Level 3
   - Level 4
   menuDePausa: {fileID: 1889508012}
+  mezcladorDeSonido: {fileID: 24100000, guid: 9b30b44eab14e5d42bced3e7ba7476cf, type: 2}
 --- !u!1 &1391444118
 GameObject:
   m_ObjectHideFlags: 0
@@ -8497,7 +8498,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &1889508017
 RectTransform:

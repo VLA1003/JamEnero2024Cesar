@@ -7,14 +7,15 @@ using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float speed = 15f;
+    public float speed = 12.5f;
     public GameObject poop;
     public float poopDecayTime = 0;
     public bool canPoop = true;
     public Image staminaBar, poopCover;
-    float stamina = 3f, maxStamina = 3f;
+    float stamina = 2f, maxStamina = 2f;
     bool running = false, canRun = true;
     public bool isMoving;
+    //GameObject camera;
 
     public Animator animator;
 
@@ -33,6 +34,8 @@ public class PlayerMovement : MonoBehaviour
         audioSource.playOnAwake = false;
 
         audioSource.clip = poopClip;
+        //camera = GameObject.Find("Main Camera");
+        //DontDestroyOnLoad(camera);
 
     }
 
@@ -66,24 +69,30 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        //if (PauseMenu.instancePausa.isPaused == false)
-        //{
-        if (Input.GetKeyDown(KeyCode.Space) && poop.activeSelf == false)
+        /*if (GameManager.instance.destruirPersonaje == true)
+        {
+            Destroy(camera);
+            Destroy(gameObject);
+        }*/
+
+        if (PauseMenu.instancePausa.isPaused == false)
+        {
+            if (Input.GetKeyDown(KeyCode.Space) && poop.activeSelf == false)
             {
                 //Debug.Log("Ha defecado");
                 DropPoop();
             }
 
-        if (poop.activeSelf == true)
-        {
-            if (poopCover.gameObject.activeSelf == false)
+            if (poop.activeSelf == true)
             {
-                poopCover.gameObject.SetActive(true);
-                poopCover.fillAmount = 1f;
+                if (poopCover.gameObject.activeSelf == false)
+                {
+                    poopCover.gameObject.SetActive(true);
+                    poopCover.fillAmount = 1f;
+                }
+                poopDecayTime += Time.deltaTime;
+                poopCover.fillAmount = 1 - poopDecayTime / 3f;
             }
-            poopDecayTime += Time.deltaTime;
-            poopCover.fillAmount = 1 - poopDecayTime / 3f;
-        }
 
             if (poopDecayTime > 3f)
             {
@@ -94,57 +103,58 @@ public class PlayerMovement : MonoBehaviour
                 poopCover.gameObject.SetActive(false);
                 canPoop = true;
             }
-        //}
-        if (running == true)
-        {
-            if (stamina > 0f)
+            //}
+            if (running == true)
             {
-                stamina -= Time.deltaTime;
-                staminaBar.fillAmount = stamina / maxStamina;
+                if (stamina > 0f)
+                {
+                    stamina -= Time.deltaTime;
+                    staminaBar.fillAmount = stamina / maxStamina;
+                } else
+                {
+                    running = false;
+                    canRun = false;
+                    staminaBar.color = new Color(1f, 0.7466f, .6941f, 1f);
+                    speed = 10f;
+                }
             } else
             {
+                if (stamina < maxStamina)
+                {
+                    stamina += Time.deltaTime / 2.5f;
+                    staminaBar.fillAmount = stamina / maxStamina;
+
+                } else
+                {
+                    stamina = maxStamina;
+                    running = false;
+                    canRun = true;
+                    staminaBar.color = new Color(1, 0.9870f, 0.6933f, 1f);
+                    staminaBar.gameObject.SetActive(false);
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.LeftShift) && canRun == true)
+            {
+                if (staminaBar.gameObject.activeSelf == false)
+                {
+                    staminaBar.gameObject.SetActive(true);
+                }
+                running = true;
+                speed = 17.5f;
+                audioSource.clip = sprintClip;
+                audioSource.Play();
+
+            }
+
+            if (Input.GetKeyUp(KeyCode.LeftShift))
+            {
                 running = false;
-                canRun = false;
-                staminaBar.color = new Color (1f, 0.7466f, .6941f, 1f);
-                speed = 10f;
-            }
-        } else
-        {
-            if (stamina < maxStamina)
-            {
-                stamina += Time.deltaTime / 2.5f;
-                staminaBar.fillAmount = stamina / maxStamina;
 
-            } else
-            {
-                stamina = maxStamina;
-                running = false;
-                canRun = true;
-                staminaBar.color = new Color (1, 0.9870f, 0.6933f, 1f);
-                staminaBar.gameObject.SetActive(false);
-            }
-        }
-
-        if (Input.GetKeyDown(KeyCode.LeftShift) && canRun == true)
-        {
-            if (staminaBar.gameObject.activeSelf == false)
-            {
-                staminaBar.gameObject.SetActive(true);
-            }
-            running = true;
-            speed = 22.5f;
-            audioSource.clip = sprintClip;
-            audioSource.Play();
-
-        }
-
-        if (Input.GetKeyUp(KeyCode.LeftShift))
-        {
-            running = false;
-
-            if (canRun == true)
-            {
-                speed = 15f;
+                if (canRun == true)
+                {
+                    speed = 12.5f;
+                }
             }
         }
 

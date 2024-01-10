@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System.Linq;
+using TMPro.Examples;
 
 public class LevelManager : MonoBehaviour
 {
     public float tiempo;
     int tiempoSegundos;
-    public int frutasAGenerar;
+    int frutasAGenerar;
     public int frutasRestantes;
 
-    int puntos = 0;
-    TextMeshProUGUI textoTiempo;
+    public int puntos = 0;
+    TextMeshProUGUI textoTiempo, textoPuntos, textoComida;
 
     [SerializeField]
     GameObject [] puntosDeCreacion;
@@ -28,6 +29,11 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         textoTiempo = GameObject.Find("Time Text").GetComponent<TextMeshProUGUI>();
+        textoPuntos = GameObject.Find("Points Text").GetComponent<TextMeshProUGUI>();
+        textoComida = GameObject.Find("Comida Restante Texto").GetComponent<TextMeshProUGUI>();
+        puntos = GameManager.instance.puntos;
+        CambiarLetreroPuntos();
+        frutasAGenerar = puntosDeCreacion.Length;
         frutasRestantes = frutasAGenerar;
         GenerarFrutas();
 
@@ -36,17 +42,20 @@ public class LevelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (tiempo > 0f) {
-            tiempo -= Time.deltaTime;
-        } else {
-            FinalizarPantalla(tiempo);
-        }
+        if (PauseMenu.instancePausa.isPaused == false)
+        {
+            if (tiempo > 0f) {
+                tiempo -= Time.deltaTime;
+            } else {
+                FinalizarPantalla(tiempo);
+            }
 
-        tiempoSegundos = Mathf.RoundToInt(tiempo);
-        textoTiempo.text = "Tiempo: " + tiempoSegundos.ToString();
+            tiempoSegundos = Mathf.RoundToInt(tiempo);
+            textoTiempo.text = "Tiempo: " + tiempoSegundos.ToString();
 
-        if (frutasRestantes == 0) {
-            FinalizarPantalla(tiempo);
+            if (frutasRestantes == 0) {
+                FinalizarPantalla(tiempo);
+            }
         }
     }
 
@@ -54,38 +63,22 @@ public class LevelManager : MonoBehaviour
         int [] puntosUsados = {-1};
         int [] frutaCreada = {-1};
 
-        while (frutasAGenerar != 0) {
-            int puntoAUsar = Mathf.RoundToInt(Random.Range(0, puntosDeCreacion.Length - 1));
-            int frutaACrear = Mathf.RoundToInt(Random.Range(0, frutasPool.Length - 1));
-
-            foreach (int puntosCrear in puntosUsados) {
-
-                if (puntosCrear == puntoAUsar) {
-                    puntoAUsar++;
-                }
-            }
-
-            //puntosUsados [puntosUsados.Length - 1] = puntoAUsar;
-            puntosUsados.Append(puntoAUsar);
-
-            foreach (int frutaActivar in frutaCreada) {
-
-                if (frutaActivar == frutaACrear) {
-                    frutaACrear++;
-                }
-            }
-
-            //frutaCreada [frutaCreada.Length] = frutaACrear;
-            frutaCreada.Append(frutaACrear);
-
-            frutasPool [frutaACrear].SetActive(true);
-            frutasPool [frutaACrear].transform.position = puntosDeCreacion [puntoAUsar].transform.position;
-            frutasAGenerar--;            
+        foreach (GameObject spawn in puntosDeCreacion)
+        {
+            int frutaACrear;
+            frutaACrear = Mathf.RoundToInt(Random.Range(0f, frutasPool.Length - 1));
+            Instantiate(frutasPool [frutaACrear], spawn.transform.position, Quaternion.identity);
         }
     }
 
     public void FinalizarPantalla (float tiempoRestante) {
         puntos += tiempoSegundos;
         GameManager.instance.TerminarNivel(puntos);
+    }
+
+    public void CambiarLetreroPuntos ()
+    {
+        textoPuntos.text = "Puntos: " + puntos.ToString();
+        textoComida.text = "Faltan: " + frutasRestantes.ToString();
     }
 }

@@ -78,6 +78,7 @@ public class PauseMenu : MonoBehaviour
             if (visibilidadDelCanvasGroup == 0f) {
                 isPaused = false;
                 menuDePausa.SetActive(false);
+                GameManager.instance.GuardarDatosVolumen();
                 if (SceneManager.GetActiveScene().name == "InitialScreen")
                 {
                     pantallaDeInicio.GetComponent<GraphicRaycaster>().enabled = true;

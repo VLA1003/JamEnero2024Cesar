@@ -1,0 +1,124 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: UITable Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: UITable
+  m_TableCollectionNameGuidString: e920b31d9d2236d4289c6c624a7bf532
+  m_Entries:
+  - m_Id: 342524649472
+    m_Key: boton_Jugar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 592115097600
+    m_Key: boton_Opciones
+    m_Metadata:
+      m_Items: []
+  - m_Id: 860525387776
+    m_Key: boton_Salir
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1249148624896
+    m_Key: texto_Volumen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1379797000192
+    m_Key: texto_volMaestro
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1539516096512
+    m_Key: texto_volMusica
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1637830582272
+    m_Key: texto_volFX
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1873760182272
+    m_Key: boton_SalirAlInicio
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2141201588224
+    m_Key: boton_SalirJuego
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2308621426688
+    m_Key: New Entry
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2345267060736
+    m_Key: boton_Controles
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2664386486272
+    m_Key: boton_Creditos
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2851322421248
+    m_Key: texto_Idiomas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3844877541376
+    m_Key: texto_ControlesFlechas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4022623756288
+    m_Key: texto_ControlesEspacio
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4416850583552
+    m_Key: texto_botonShift
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4593950875648
+    m_Key: texto_ControlesShift
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4797861158912
+    m_Key: texto_ControlesEsc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5149662601216
+    m_Key: boton_Entendido
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5484070264832
+    m_Key: texto_Creditos
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6523825643520
+    m_Key: texto_Tiempo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6650556538880
+    m_Key: texto_Puntos
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6938407428096
+    m_Key: texto_Faltan
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7788072755200
+    m_Key: texto_MensajeFinal
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 201507743088246808
+  references:
+    version: 2
+    RefIds:
+    - rid: 201507743088246808
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1704923472245

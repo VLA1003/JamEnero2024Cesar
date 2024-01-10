@@ -130,7 +130,7 @@ public class GameManager : MonoBehaviour
             textoPuntuacionMaxima = GameObject.Find("textoMaximaPuntuacion").GetComponent<TextMeshProUGUI>();
             int puntuacionMaxima;
             puntuacionMaxima = PlayerPrefs.GetInt("PuntuacionMaxima", puntos);
-            textoPuntuacionMaxima.text = "MP: " + puntuacionMaxima.ToString();
+            textoPuntuacionMaxima.text = "HI: " + puntuacionMaxima.ToString();
         } 
     }
 

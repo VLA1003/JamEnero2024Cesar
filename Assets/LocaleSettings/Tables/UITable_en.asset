@@ -1,0 +1,118 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: UITable_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: e920b31d9d2236d4289c6c624a7bf532, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 342524649472
+    m_Localized: Play
+    m_Metadata:
+      m_Items: []
+  - m_Id: 592115097600
+    m_Localized: Options
+    m_Metadata:
+      m_Items: []
+  - m_Id: 860525387776
+    m_Localized: Quit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1249148624896
+    m_Localized: 'Volume:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1379797000192
+    m_Localized: 'Master:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1539516096512
+    m_Localized: 'Music:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1637830582272
+    m_Localized: 'Effects:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1873760182272
+    m_Localized: Go to menu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2141201588224
+    m_Localized: Quit Game
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2345267060736
+    m_Localized: Controls
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2664386486272
+    m_Localized: Credits
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2851322421248
+    m_Localized: 'Language:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3844877541376
+    m_Localized: Use directional keys to move your character
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4022623756288
+    m_Localized: Press the space bar to leave a "present" to your neighbours, and
+      so make them slip
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4416850583552
+    m_Localized: Shift
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4593950875648
+    m_Localized: Hold Left Shift key pressed to sprint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4797861158912
+    m_Localized: Press the 'Esc' key to open and close the menus
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5149662601216
+    m_Localized: Understood
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5484070264832
+    m_Localized: Credits
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6523825643520
+    m_Localized: 'Time:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6650556538880
+    m_Localized: 'Points:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6938407428096
+    m_Localized: 'Left:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7788072755200
+    m_Localized: 'End of the game
+
+      Score:'
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

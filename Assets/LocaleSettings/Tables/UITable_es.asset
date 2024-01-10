@@ -1,0 +1,116 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: UITable_es
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: es
+  m_SharedData: {fileID: 11400000, guid: e920b31d9d2236d4289c6c624a7bf532, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 342524649472
+    m_Localized: Jugar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 592115097600
+    m_Localized: Opciones
+    m_Metadata:
+      m_Items: []
+  - m_Id: 860525387776
+    m_Localized: Salir
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1249148624896
+    m_Localized: 'Volumen:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1379797000192
+    m_Localized: 'Maestro:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1539516096512
+    m_Localized: "M\xFAsica:"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1637830582272
+    m_Localized: 'Efectos:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1873760182272
+    m_Localized: Salir al inicio
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2141201588224
+    m_Localized: Salir del Juego
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2345267060736
+    m_Localized: Controles
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2664386486272
+    m_Localized: "Cr\xE9ditos"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2851322421248
+    m_Localized: 'Idioma:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3844877541376
+    m_Localized: Utiliza las teclas direccionales para mover a tu personaje
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4022623756288
+    m_Localized: "Pulsa la barra espciadora para dejarle un \"regalito\" a tus vecinos,
+      y as\xED hacer que se resbalen"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4416850583552
+    m_Localized: "May\xFAs"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4593950875648
+    m_Localized: "Mant\xE9n pulsado el Shift Izquierdo para esprintar"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4797861158912
+    m_Localized: "Pulsa la tecla 'Esc' para abrir y cerrar los men\xFAs"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5149662601216
+    m_Localized: Entendido
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5484070264832
+    m_Localized: "Cr\xE9ditos:"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6523825643520
+    m_Localized: 'Tiempo:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6650556538880
+    m_Localized: 'Puntos:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6938407428096
+    m_Localized: 'Faltan:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7788072755200
+    m_Localized: "Fin de la partida\nPuntuaci\xF3n:"
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

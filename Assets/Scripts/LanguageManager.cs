@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Settings;
+using UnityEngine.UI;
 using TMPro;
 
 public class LanguageManager : MonoBehaviour
@@ -10,6 +13,7 @@ public class LanguageManager : MonoBehaviour
 
     [SerializeField]
     TextMeshProUGUI textoIdioma;
+
     // Start is called before the first frame update
 
     private void Awake ()
@@ -57,5 +61,6 @@ public class LanguageManager : MonoBehaviour
     public void CambiarIdioma ()
     {
         textoIdioma.text = languages [idiomaActual];
+        LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[idiomaActual];
     }
 }

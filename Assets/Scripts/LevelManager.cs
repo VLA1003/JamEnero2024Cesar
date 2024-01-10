@@ -52,7 +52,7 @@ public class LevelManager : MonoBehaviour
             }
 
             tiempoSegundos = Mathf.RoundToInt(tiempo);
-            textoTiempo.text = "Tiempo: " + tiempoSegundos.ToString();
+            textoTiempo.text = tiempoSegundos.ToString();
 
             if (frutasRestantes == 0) {
                 FinalizarPantalla(tiempo);
@@ -77,8 +77,8 @@ public class LevelManager : MonoBehaviour
 
     public void CambiarLetreroPuntos ()
     {
-        textoPuntos.text = "Puntos: " + puntos.ToString();
-        textoComida.text = "Faltan: " + frutasRestantes.ToString();
+        textoPuntos.text = puntos.ToString();
+        textoComida.text = frutasRestantes.ToString();
     }
 }
   

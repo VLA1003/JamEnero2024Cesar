@@ -2148,7 +2148,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
+  m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -6171,6 +6171,7 @@ MonoBehaviour:
   - Level 4
   menuDePausa: {fileID: 1889508012}
   mezcladorDeSonido: {fileID: 24100000, guid: 9b30b44eab14e5d42bced3e7ba7476cf, type: 2}
+  destruirPersonaje: 0
 --- !u!1 &1391444118
 GameObject:
   m_ObjectHideFlags: 0
@@ -8453,7 +8454,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
 --- !u!114 &1889508015
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8495,10 +8496,10 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 1
-  m_AdditionalShaderChannelsFlag: 25
+  m_AdditionalShaderChannelsFlag: 1
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 15
   m_TargetDisplay: 0
 --- !u!224 &1889508017
 RectTransform:

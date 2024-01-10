@@ -6,15 +6,21 @@ public class EnemyMovement : MonoBehaviour
 {
     public Transform[] patrolPoints;
     public float patrolSpeed = 2f;
-    public float chaseSpeed = 4f;
-    public float visionRadius = 5f;
-    public float chaseDuration = 5f;
+    public float chaseSpeed = 3f;
+    public float visionRadius = 4f;
+    public float chaseDuration = 5f; 
+    float returnPatrolDuration = 5f;
 
     private Transform player;
     private int currentPatrolIndex = 0;
     private float timer;
-    bool canRun = true;
+    bool canRun = true, returnToPatrol = false;
     private Animator animator;
+
+    private void Awake ()
+    {
+        gameObject.transform.DetachChildren();
+    }
 
     void Start()
     {
@@ -23,19 +29,32 @@ public class EnemyMovement : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        if (PauseMenu.instancePausa.isPaused == false) {
-            
-            if (CanSeePlayer())
+        //if (PauseMenu.instancePausa.isPaused == false) {
+        if (returnToPatrol == false)
+        {
+            if (CanSeePlayer() == true)
             {
                 ChasePlayer();
-            }
-            else
+            } else
             {
                 Patrol();
             }
-        }
+        } else if (returnToPatrol == true)
+        {
+            Patrol();
+
+            if (returnPatrolDuration > 0f)
+            {
+                returnPatrolDuration -= Time.deltaTime;
+            } else
+            {
+                returnPatrolDuration = 5f;
+                returnToPatrol = false;
+            }
+        } 
+        //}
     }
 
     bool CanSeePlayer()
@@ -56,13 +75,14 @@ public class EnemyMovement : MonoBehaviour
         if (canRun == true) {
             timer -= Time.deltaTime;
             Vector2 direction = player.position - transform.position;
-            transform.position = Vector2.MoveTowards(transform.position, player.position, chaseSpeed * Time.deltaTime);
+            //transform.position = Vector2.MoveTowards(transform.position, player.position, chaseSpeed * Time.deltaTime);
+            gameObject.GetComponent<Rigidbody2D>().MovePosition( new Vector2(transform.position.x, transform.position.y) + direction * chaseSpeed * Time.deltaTime);
             SetAnimationParameters(direction);
 
             if (timer <= 0f)
             {
                 timer = chaseDuration;
-                Patrol();
+                returnToPatrol = true;
             }
         }
     }
@@ -76,15 +96,30 @@ public class EnemyMovement : MonoBehaviour
 
             if (Vector2.Distance(transform.position, patrolPoints[currentPatrolIndex].position) < 0.2f)
             {
-                currentPatrolIndex = (currentPatrolIndex + 1) % patrolPoints.Length;
+                if (currentPatrolIndex == patrolPoints.Length - 1)
+                {
+                    currentPatrolIndex = 0;
+                } else
+                {
+                    currentPatrolIndex++;
+                }
+
+                UnityEngine.Debug.Log(gameObject.name + " ha cambiado el destino a " + patrolPoints [currentPatrolIndex].ToString());
             }
         }
     }
 
-    void SetAnimationParameters(Vector2 direction)
+    void SetAnimationParameters(Vector2 directionEnemy)
     {
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        animator.SetFloat("Direction", angle);
+        if (Mathf.Abs(directionEnemy.x) > Mathf.Abs(directionEnemy.y))
+        {
+            animator.SetFloat("Horizontal", directionEnemy.x);
+            animator.SetFloat("Vertical", 0f);
+        } else
+        {
+            animator.SetFloat("Horizontal", 0f);
+            animator.SetFloat("Vertical", directionEnemy.y);
+        }
     }
 
     public void StunEnemy () {

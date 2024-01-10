@@ -57,10 +57,11 @@ public class PauseMenu : MonoBehaviour
         if (menuDePausa.activeSelf == false) {
             menuDePausa.SetActive(true);
 
-            if (SceneManager.GetActiveScene().name == "InitialScreen")
-            {
-                pantallaDeInicio.GetComponent<GraphicRaycaster>().enabled = false;
-            }
+        }
+        
+        if (SceneManager.GetActiveScene().name == "InitialScreen")
+        {
+            pantallaDeInicio.GetComponent<GraphicRaycaster>().enabled = false;
         }
 
         LeanTween.scale(menuDePausa, Vector3.one * nuevaEscalaCanvasPausa, .75f).setEaseOutQuad().setIgnoreTimeScale(true).setOnUpdate((float x) => {
@@ -73,7 +74,9 @@ public class PauseMenu : MonoBehaviour
                 menuPausaCanvasGroup.alpha = 1f - x;
             }
         }).setOnComplete (()=> {
+
             gameObject.GetComponent<GraphicRaycaster>().enabled = true;
+            UnityEngine.Debug.Log("jasndjaw");
 
             if (visibilidadDelCanvasGroup == 0f) {
                 isPaused = false;

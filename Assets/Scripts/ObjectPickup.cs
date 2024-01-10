@@ -17,10 +17,7 @@ public class ObjectPickup : MonoBehaviour
     private void Start()
     {
         //DontDestroyOnLoad(gameObject);
-        pickupSound = gameObject.AddComponent<AudioSource>();
-        pickupSound.playOnAwake = false;  
-        
-        pickupSound.clip = pickupClip;
+        pickupSound = gameObject.GetComponent<AudioSource>(); 
 
         levelManager = GameObject.Find("LevelManager");
     }
@@ -34,6 +31,7 @@ public class ObjectPickup : MonoBehaviour
             currentObject.transform.SetParent(transform);
             currentObject.GetComponent<Collider2D>().enabled = false;
 
+            pickupSound.clip = pickupClip;
             pickupSound.Play();
 
         }

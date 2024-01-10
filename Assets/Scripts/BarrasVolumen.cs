@@ -25,13 +25,29 @@ public class BarrasVolumen : MonoBehaviour
         float volumen;
         mezcladorDeVolumen.audioMixer.ClearFloat(nombreDeLaVariableDelVolumen);
         mezcladorDeVolumen.audioMixer.GetFloat(nombreDeLaVariableDelVolumen, out volumen);
-        gameObject.GetComponent<Slider>().value = volumen;
+
+        switch (volumen)
+        {
+            case -80f:
+                gameObject.GetComponent<Slider>().value = -30f;
+                equisDelBotonDeSilenciar.text = "X";
+                break;
+
+            default:
+                gameObject.GetComponent<Slider>().value = volumen;
+                break;
+        }
+
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (gameObject.GetComponent<Slider>().value == -30f && equisDelBotonDeSilenciar.text != "X")
+        {
+            equisDelBotonDeSilenciar.text = "X";
+        }
     }
 
     public void CambiarVolumen ()
@@ -39,7 +55,18 @@ public class BarrasVolumen : MonoBehaviour
         silenciarPista = false;
         equisDelBotonDeSilenciar.text = "";
         mezcladorDeVolumen.audioMixer.ClearFloat(nombreDeLaVariableDelVolumen);
-        mezcladorDeVolumen.audioMixer.SetFloat(nombreDeLaVariableDelVolumen, gameObject.GetComponent<Slider>().value);
+        
+        float volumen = gameObject.GetComponent<Slider>().value;
+        switch (volumen)
+        {
+            case -30f:
+                mezcladorDeVolumen.audioMixer.SetFloat(nombreDeLaVariableDelVolumen, -80f);
+                break;
+
+            default:
+                mezcladorDeVolumen.audioMixer.SetFloat(nombreDeLaVariableDelVolumen, volumen);
+                break;
+        }        
     }
 
     public void SilenciarAudio ()

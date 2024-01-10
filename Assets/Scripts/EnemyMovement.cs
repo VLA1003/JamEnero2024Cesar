@@ -75,8 +75,7 @@ public class EnemyMovement : MonoBehaviour
         if (canRun == true) {
             timer -= Time.deltaTime;
             Vector2 direction = player.position - transform.position;
-            //transform.position = Vector2.MoveTowards(transform.position, player.position, chaseSpeed * Time.deltaTime);
-            gameObject.GetComponent<Rigidbody2D>().MovePosition( new Vector2(transform.position.x, transform.position.y) + direction * chaseSpeed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, player.position, chaseSpeed * Time.deltaTime);
             SetAnimationParameters(direction);
 
             if (timer <= 0f)

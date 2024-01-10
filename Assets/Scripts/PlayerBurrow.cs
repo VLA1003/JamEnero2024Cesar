@@ -13,9 +13,7 @@ public class PlayerBurrow : MonoBehaviour
     private void Start()
     {
         
-        burrowSound = gameObject.AddComponent<AudioSource>();
-        burrowSound.playOnAwake = false;
-        burrowSound.clip = burrowClip;
+        burrowSound = gameObject.GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter2D(Collider2D entry)
@@ -24,6 +22,7 @@ public class PlayerBurrow : MonoBehaviour
         {
             onBurrow = true;
             //Debug.Log("Ha entrado en la madriguera.");
+            burrowSound.clip = burrowClip;
             burrowSound.Play();
 
         }

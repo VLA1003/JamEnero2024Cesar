@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
     }
 
     public void TerminarNivel (int puntosDelNivel) {
-        puntos += puntosDelNivel;
+        puntos = puntosDelNivel;
 
         if (puntosDelNivel == 0) {
             nivelActual = 0;
@@ -141,13 +141,19 @@ public class GameManager : MonoBehaviour
         mezcladorDeSonido.ClearFloat("VolumenMaestro");
         mezcladorDeSonido.GetFloat("VolumenMaestro", out volumen);
         PlayerPrefs.SetFloat("VolMaestro", volumen);
+        mezcladorDeSonido.ClearFloat("VolumenMaestro");
+        mezcladorDeSonido.SetFloat("VolumenMaestro", volumen);
 
         mezcladorDeSonido.ClearFloat("VolumenMusica");
         mezcladorDeSonido.GetFloat("VolumenMusica", out volumen);
         PlayerPrefs.SetFloat("VolMusica", volumen);
+        mezcladorDeSonido.ClearFloat("VolumenMusica");
+        mezcladorDeSonido.SetFloat("VolumenMusica", volumen);
 
         mezcladorDeSonido.ClearFloat("VolumenEfectos");
         mezcladorDeSonido.GetFloat("VolumenEfectos", out volumen);
         PlayerPrefs.SetFloat("VolEfectos", volumen);
+        mezcladorDeSonido.ClearFloat("VolumenEfectos");
+        mezcladorDeSonido.SetFloat("VolumenEfectos", volumen);
     }
 }

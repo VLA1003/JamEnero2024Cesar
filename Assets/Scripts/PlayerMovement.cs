@@ -30,10 +30,7 @@ public class PlayerMovement : MonoBehaviour
         poop.SetActive(false);
         animator = GetComponent<Animator>();
 
-        audioSource = gameObject.AddComponent<AudioSource>();
-        audioSource.playOnAwake = false;
-
-        audioSource.clip = poopClip;
+        audioSource = gameObject.GetComponent<AudioSource>();
         //camera = GameObject.Find("Main Camera");
         //DontDestroyOnLoad(camera);
 
@@ -87,6 +84,8 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (poopCover.gameObject.activeSelf == false)
                 {
+                    audioSource.clip = poopClip;
+                    audioSource.Play();
                     poopCover.gameObject.SetActive(true);
                     poopCover.fillAmount = 1f;
                 }
